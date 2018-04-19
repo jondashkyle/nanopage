@@ -11,25 +11,43 @@
 ```js
 var Page = require('nanopage')
 
-function view (state, emit) {
-  // instantiate the page
-  var page = new Page(state)
-
-  // directly access pages by their href
-  var site = page('/').value()
-  var about = page('/about').value()
-
-  // grab children and files
-  var children = page().children().sort('name', 'asc').value()
-  var files = page().files().value()
-
-  // create new queries from previous
-  var first = page(children).first().value()
-  var last = page(children).last().value()
-
-  // access specific keys
-  var lastTitle = page(last).value('title')
+// some content state
+var state = {
+  href: '/',
+  content: {
+    '/': {
+      title: 'Just a site',
+      text: 'With some text',
+      tags: ['and', 'some', 'tags']
+    },
+    '/example': {
+      title: 'Example',
+      text: 'Scope it out',
+      great: {
+        demo: 'Am I right?',
+        nah: 'Ok nbd.'
+      }
+    }
+  }
 }
+
+// instantiate the page
+var page = new Page(state)
+
+// directly access pages by their href
+var site = page('/').value()
+var about = page('/about').value()
+
+// grab children and files
+var children = page().children().sort('name', 'asc').value()
+var files = page().files().value()
+
+// create new queries from previous
+var first = page(children).first().value()
+var last = page(children).last().value()
+
+// access specific keys
+var lastTitle = page(last).value('title')
 ```
 
 <details><summary><b>Complete Methods List</b></summary>
