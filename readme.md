@@ -55,7 +55,8 @@ var first = page(children).first().value()
 var last = page(children).last().value()
 
 // access specific keys
-var lastTitle = page(last).value('title')
+var lastTitle = page(last).value('title') // like this
+var lastTitle = page(last).value().title // or like this
 ```
 
 ## Extra
@@ -93,6 +94,20 @@ app.use(function (state, emitter) {
 })
 ```
 </details>
+
+## Philosophy
+
+State is really handy. Especially global state. We ended up with state when webapps started to get really complex and we needed all of the interface to stay in sync with new data and minimize the amount of updates happening to the DOM. Or whatever.
+
+After a while, we started using state for sites too. That is, sites that look more like sites and less like apps. Mostly because state is super handy.
+
+However, state can get really messy as sites get larger. Where do you store things? How do you reference them? If you have ten nested pages, do you have ten nested objects?
+
+Instead of all of this complexity, lets reintroduce the URL. Each page of your site is a key in an object. That is to say, each page’s url is a key. We can simply use the `window.location` to grab the data/content for the current page. Or, we can use any arbitrary url, like `/members/nelson`.
+
+This way of organizing state for websites based around the pages makes it super trivial to pass access content state in your views and pass them down into components.
+
+Ok cool!
 
 ## Methods
 
