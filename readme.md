@@ -54,9 +54,28 @@ var lastTitle = page(last).value('title')
 
 ## Extra
 
-Using Choo? You might be able just use this simple plugin:
+Using Choo? Try the plugin! Alternatively, you can create a super simple approximation.
 
-<details><summary><b>Complete Methods List</b></summary>
+<details><summary><b>Use the Choo Plugin</b></summary>
+```js
+var html = require('choo/html')
+var choo = require('choo')
+var app = choo()
+
+app.use(require('nanopage/choo'))
+
+app.route('*', function (state, emit) {
+  return html`
+    <body>${state.page().value('title')}</body>
+  `
+})
+
+if (module.parent) module.exports = app
+else app.mount('body')
+```
+</details>
+
+<details><summary><b>Super simple alternative</b></summary>
 ```js
 module.exports = function (state, emitter) {
   state.page = function (key) {
