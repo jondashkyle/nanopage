@@ -60,7 +60,7 @@ var lastTitle = page(last).value('title')
 
 ## Extra
 
-Using Choo? Try the plugin! Alternatively, you can create a super simple approximation with a plugin of your own.
+Using Choo? Try the plugin! Alternatively, you can create a super simple alternative with a plugin of your own.
 
 <details><summary><b>Use the Choo Plugin</b></summary>
 
@@ -82,15 +82,15 @@ else app.mount('body')
 ```
 </details>
 
-<details><summary><b>Super simple alternative</b></summary>
+<details><summary><b>Super simple alternative plugin</b></summary>
 
 ```js
-module.exports = function (state, emitter) {
+app.use(function (state, emitter) {
   state.page = function (key) {
     key = key || (state.href || '/')
     return state.content[key]
   }
-}
+})
 ```
 </details>
 
@@ -98,11 +98,11 @@ module.exports = function (state, emitter) {
 
 #### `.children()`
 
-Remaps to `.pages()`.
+Alias for `.pages()`.
 
 #### `.file(filename)`
 
-Grab an individual file.
+Grab an individual file. For example, `.file('example.jpg')`.
 
 #### `.files()`
 
@@ -126,7 +126,7 @@ Images of the current page.
 
 #### `.isActive()`
 
-Is the current page active?
+Is the current page active? Returns boolean.
 
 #### `.last()`
 
@@ -155,6 +155,10 @@ Sort the `files` or `pages` based by a certain key. Order can be either `asc` or
 #### `.toArray()`
 
 Converts the values of an object to an array.
+
+#### `.v()`
+
+Alias for `.value()`.
 
 #### `.value()`
 
