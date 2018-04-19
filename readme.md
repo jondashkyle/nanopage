@@ -103,9 +103,7 @@ After a while, we started using state for sites too. That is, sites that look mo
 
 Instead of all of this complexity, lets reintroduce the URL. Each page of your site is a key in an object. That is to say, each page’s url is a key. We can simply use the `window.location` to grab the data/content for the current page. Or, we can use any arbitrary url, like `/members/nelson`.
 
-This way of organizing state for sites as a flat object of page urls makes it super trivial to pass access content state in your views and pass them down into components.
-
-Ok cool!
+This way of organizing state for sites as a flat object of page urls makes it super trivial to access content in your views and pass it down into components, or whatever. Ok cool!
 
 ## Methods
 
