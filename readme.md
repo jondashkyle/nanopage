@@ -1,14 +1,20 @@
 <h1 align="center">nanopage</h1>
 
-`nanopage` is a super easy way of traversing content state. A few basic rules:
+`nanopage` is a super easy way of traversing content state.
+
+```
+npm i nanopage --save
+```
+
+### Example
+
+A few basic rules:
 
 - End a query and return it’s value by calling `.value()`
 - Every method (almost) is chainable
 - Values can be reused in new queries by doing `page(oldQuery)`
 
 Depends on [smarkt](https://github.com/jondashkyle/smarkt) for building content state and [hypha](https://github.com/jondashkyle/hypha) for no-database `.txt` storage. Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo). If using Choo, you might [not even need it](#extra).
-
-### Example
 
 ```js
 var Page = require('nanopage')
