@@ -6,6 +6,10 @@
 - Every method is chainable (except `.value()`)
 - Values can be reused in new queries by doing `page(oldQuery)`
 
+Depends on [smarkt](https://github.com/jondashkyle/smarkt) for building content state and [hypha](https://github.com/jondashkyle/hypha) for no-database `.txt` storage.
+
+Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo).
+
 ### Example
 
 ```js
