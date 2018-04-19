@@ -97,7 +97,7 @@ app.use(function (state, emitter) {
 
 ## Philosophy
 
-State is really handy. Especially global state. We ended up with state when webapps started to get really complex and we needed all of the interface to stay in sync with new data and minimize the amount of updates happening to the DOM. Or whatever.
+State is really handy. Especially global state. We ended up with state when webapps started to get really complex and we needed all of the interface to stay in sync with new data and minimize the amount of updates happening to the DOM.
 
 After a while, we started using state for sites too. That is, sites that look more like sites and less like apps. Mostly because state is super handy. However, state can get really messy as sites get larger. Where do you store things? How do you reference them? If you have ten nested pages, do you have ten nested objects?
 
