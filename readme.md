@@ -6,7 +6,7 @@
 - Every method is chainable (except `.value()`)
 - Values can be reused in new queries by doing `page(oldQuery)`
 
-### Examples
+### Example
 
 ```js
 var Page = require('nanopage')
@@ -36,7 +36,7 @@ var page = new Page(state)
 
 // directly access pages by their href
 var site = page('/').value()
-var about = page('/about').value()
+var about = page('/example').value()
 
 // grab children and files
 var children = page().children().sort('name', 'asc').value()
@@ -50,7 +50,7 @@ var last = page(children).last().value()
 var lastTitle = page(last).value('title')
 ```
 
-<details><summary><b>Complete Methods List</b></summary>
+## Methods
 
 #### `.children()`
 
