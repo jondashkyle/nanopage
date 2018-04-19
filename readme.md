@@ -6,7 +6,7 @@
 - Every method (almost) is chainable
 - Values can be reused in new queries by doing `page(oldQuery)`
 
-Depends on [smarkt](https://github.com/jondashkyle/smarkt) for building content state and [hypha](https://github.com/jondashkyle/hypha) for no-database `.txt` storage. Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo).
+Depends on [smarkt](https://github.com/jondashkyle/smarkt) for building content state and [hypha](https://github.com/jondashkyle/hypha) for no-database `.txt` storage. Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo). If using Choo, you might [not even need it](#extra).
 
 ### Example
 
@@ -54,9 +54,10 @@ var lastTitle = page(last).value('title')
 
 ## Extra
 
-Using Choo? Try the plugin! Alternatively, you can create a super simple approximation.
+Using Choo? Try the plugin! Alternatively, you can create a super simple approximation with a plugin of your own.
 
 <details><summary><b>Use the Choo Plugin</b></summary>
+
 ```js
 var html = require('choo/html')
 var choo = require('choo')
@@ -76,6 +77,7 @@ else app.mount('body')
 </details>
 
 <details><summary><b>Super simple alternative</b></summary>
+
 ```js
 module.exports = function (state, emitter) {
   state.page = function (key) {
