@@ -157,7 +157,7 @@ The parent of the current page.
 
 #### `.sort()`
 
-Sorts the current value’s `.pages` by `.order`. Formatting of `.order` follows the arguments of `.sortBy` seperated by a space. For example, `date asc`.
+Sorts the current value’s `.pages` by `.order`. Formatting of `.order` follows the arguments of `.sortBy` separated by a space. For example, `date asc`.
 
 #### `.sortBy(key, order)`
 
