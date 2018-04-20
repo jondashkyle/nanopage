@@ -1,20 +1,12 @@
 <h1 align="center">nanopage</h1>
 
-`nanopage` is a super easy way of traversing content state.
+`nanopage` is a super easy way of traversing flat content state.
 
 ```
 npm i nanopage --save
 ```
 
-### Example
-
-A few basic rules:
-
-- End a query and return it’s value by calling `.value()`
-- Every method (almost) is chainable
-- Values can be reused in new queries by doing `page(oldQuery)`
-
-Depends on [smarkt](https://github.com/jondashkyle/smarkt) for building content state and [hypha](https://github.com/jondashkyle/hypha) for no-database `.txt` storage. Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo). If using Choo, you might [not even need it](#extra).
+## Example
 
 ```js
 var Page = require('nanopage')
@@ -59,11 +51,29 @@ var lastTitle = page(last).value('title') // like this
 var lastTitle = page(last).value().title // or like this
 ```
 
+## Usage
+
+- Every method (almost) is chainable
+- End a query and return it’s value by calling `.value()` or `.v()`
+- Values can be reused in new queries by doing `page(oldQuery)`
+
+Want to transform a directory of files and folders into flat content state? Try [hypha](https://github.com/jondashkyle/hypha)! Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo). If using Choo, you might [not even need it](#extra).
+
+## Philosophy
+
+State is really handy. Especially global state. We ended up with state when webapps started to get really complex and we needed all of the interface to stay in sync with new data and minimize the amount of updates happening to the DOM.
+
+After a while, we started using state for sites too. That is, sites that look more like sites and less like apps. Mostly because state is super handy. However, state can get really messy as sites get larger. Where do you store data? How do you reference it? If you have ten nested pages, do you have ten nested objects?
+
+Instead of all of this complexity, lets reintroduce the URL. Each page url of your site is a key in a flat object. We can simply use the `window.location` to grab the data/content for the current page. Or, we can use any arbitrary url, like `/members/nelson`.
+
+This way of organizing state for sites as a flat object of page urls makes it super trivial to access content in your views and pass it down into components, or whatever. Ok cool!
+
 ## Extra
 
-Using Choo? Try the plugin! Alternatively, you can create a super simple alternative with a plugin of your own.
+Using Choo? Try the plugin! Don’t need all the bells and whistles? Try creating your own basic Choo plugin from scratch.
 
-<details><summary><b>Use the Choo Plugin</b></summary>
+<details><summary><b>Use the Choo plugin</b></summary>
 
 ```js
 var html = require('choo/html')
@@ -83,7 +93,7 @@ else app.mount('body')
 ```
 </details>
 
-<details><summary><b>Super simple alternative plugin</b></summary>
+<details><summary><b>Basic vanilla Choo plugin</b></summary>
 
 ```js
 app.use(function (state, emitter) {
@@ -94,16 +104,6 @@ app.use(function (state, emitter) {
 })
 ```
 </details>
-
-## Philosophy
-
-State is really handy. Especially global state. We ended up with state when webapps started to get really complex and we needed all of the interface to stay in sync with new data and minimize the amount of updates happening to the DOM.
-
-After a while, we started using state for sites too. That is, sites that look more like sites and less like apps. Mostly because state is super handy. However, state can get really messy as sites get larger. Where do you store things? How do you reference them? If you have ten nested pages, do you have ten nested objects?
-
-Instead of all of this complexity, lets reintroduce the URL. Each page of your site is a key in an object. That is to say, each page’s url is a key. We can simply use the `window.location` to grab the data/content for the current page. Or, we can use any arbitrary url, like `/members/nelson`.
-
-This way of organizing state for sites as a flat object of page urls makes it super trivial to access content in your views and pass it down into components, or whatever. Ok cool!
 
 ## Methods
 
