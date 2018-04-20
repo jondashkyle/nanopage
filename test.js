@@ -45,6 +45,12 @@ test('sort', function (t) {
   t.end()
 })
 
+test('find', function (t) {
+  t.ok(page().find('/about').value('title') === 'About', 'absolute')
+  t.ok(page('/example').find('child').value('title') === 'Child', 'relative')
+  t.end()
+})
+
 function createState () {
   return {
     href: '/',
