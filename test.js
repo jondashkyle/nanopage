@@ -51,6 +51,11 @@ test('find', function (t) {
   t.end()
 })
 
+test('parent', function (t) {
+  t.ok(page('/about').parent().value('title') === 'Index', 'parent')
+  t.end()
+})
+
 function createState () {
   return {
     href: '/',
