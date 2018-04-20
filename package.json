@@ -24,5 +24,8 @@
     "object-values": "^2.0.0",
     "resolve-path": "^1.4.0",
     "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "tape": "^4.9.0"
   }
 }
