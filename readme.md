@@ -155,6 +155,10 @@ Sub-pages of the current page.
 
 The parent of the current page.
 
+#### `.shuffle()`
+
+Shuffle values of an array.
+
 #### `.sort()`
 
 Sorts the current value’s `.pages` by `.order`. Formatting of `.order` follows the arguments of `.sortBy` separated by a space. For example, `date asc`.
