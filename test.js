@@ -16,7 +16,7 @@ test('value', function (t) {
 })
 
 test('arrays', function (t) {
-  var state = { one: '1', two: '2'}
+  var state = { one: '1', two: '2' }
   t.ok(Array.isArray(page(state).toArray()), 'to array')
   t.ok(Array.isArray(page(state).values()), 'values')
   t.ok(Array.isArray(page(state).keys()), 'keys')
