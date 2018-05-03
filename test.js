@@ -45,6 +45,13 @@ test('sort', function (t) {
   t.end()
 })
 
+test('passsing urls', function (t) {
+  t.ok(page('/').value('title') === 'Index', 'able to locate index')
+  t.ok(page('/about').value('title') === 'About', 'able to locate sub-page')
+  t.ok(page('/about/').value('title') === 'About', 'remove trailing slash')
+  t.end()
+})
+
 test('find', function (t) {
   t.ok(page().find('/about').value('title') === 'About', 'absolute')
   t.ok(page('/example').find('child').value('title') === 'Child', 'relative')
