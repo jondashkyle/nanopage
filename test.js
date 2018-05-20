@@ -1,7 +1,9 @@
 var test = require('tape')
-var Page = require('./')
+var Page = require('./lib/page')
+var File = require('./lib/file')
 
 var page = new Page(createState())
+var file = new File(createState())
 
 test('output', function (t) {
   t.ok(typeof page === 'function', 'outputs function')
@@ -60,6 +62,12 @@ test('find', function (t) {
 
 test('parent', function (t) {
   t.ok(page('/about').parent().value('title') === 'Index', 'parent')
+  t.end()
+})
+
+test('file', function (t) {
+  t.ok(typeof file('/image.jpg').value() === 'object', 'value is type object')
+  t.ok(file('/image.jpg').value('url') === '/content/image.jpg', 'url exists')
   t.end()
 })
 
