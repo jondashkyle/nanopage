@@ -86,6 +86,12 @@ function createState () {
         text: 'This is a test',
         url: '/example'
       },
+      '/image.jpg': {
+        filename: 'image.jpg',
+        extension: 'jpg',
+        type: 'image',
+        url: '/content/image.jpg'
+      },
       '/example/child': {
         title: 'Child',
         date: '2018-04-01',

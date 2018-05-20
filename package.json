@@ -22,6 +22,7 @@
   "dependencies": {
     "object-keys": "^1.0.11",
     "object-values": "^2.0.0",
+    "parse-filepath": "^1.0.2",
     "resolve-path": "^1.4.0",
     "xtend": "^4.0.1"
   },

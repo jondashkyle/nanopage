@@ -75,7 +75,7 @@ This way of organizing state for sites as a flat object of page urls makes it su
 
 ## Files
 
-Nanopage provides utilities for `file()` addition to the `page()`.
+Nanopage provides utilities for files via `file()` addition to `page()`.
 
 ```js
 var File = require('nanopage/file')
@@ -134,7 +134,15 @@ Returns the first `page` or `file`.
 
 #### `.isActive()`
 
-Is the current page active? Returns boolean.
+Is the current value active? Returns boolean.
+
+#### `.isFile()`
+
+Is the current value a file? Returns boolean.
+
+#### `.isPage()`
+
+Is the current value a page? Returns boolean.
 
 #### `.last()`
 
