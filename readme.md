@@ -176,15 +176,15 @@ Alias for `.pages()`.
 
 #### `.file(filename)`
 
-Grab an individual file. For example, `.file('example.jpg')`.
+Locate a child file of the current page based on the `url`.
 
 #### `.files()`
 
-Files of the current `page`.
+Child files of the current `page`.
 
-#### `.find(href)`
+#### `.find(url)`
 
-Locate a `sub-page` of the `current page` based on the `href`.
+Locate a child page of the current page based on the `url`.
 
 #### `.hasView()`
 
@@ -192,11 +192,11 @@ Does the current page have a custom view?
 
 #### `.images()`
 
-Images of the current page.
+Child images of the current page.
 
 #### `.pages()`
 
-Sub-pages of the current page.
+Child pages of the current page.
 
 #### `.shuffle()`
 

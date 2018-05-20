@@ -68,6 +68,8 @@ test('parent', function (t) {
 test('file', function (t) {
   t.ok(typeof file('/image.jpg').value() === 'object', 'value is type object')
   t.ok(file('/image.jpg').value('url') === '/content/image.jpg', 'url exists')
+  t.ok(typeof file('/example/child/image.png').value() === 'object', 'deep value is type object')
+  t.ok(typeof page('/example/child').file('image.png').value() === 'object', 'page file value is type object')
   t.end()
 })
 
@@ -96,7 +98,7 @@ function createState () {
       },
       '/image.jpg': {
         filename: 'image.jpg',
-        extension: 'jpg',
+        extension: '.jpg',
         type: 'image',
         url: '/content/image.jpg'
       },
@@ -105,6 +107,12 @@ function createState () {
         date: '2018-04-01',
         text: 'Look ma I’m nested',
         url: '/example/child'
+      },
+      '/example/child/image.png': {
+        filename: 'image.png',
+        extension: '.png',
+        type: 'image',
+        url: '/content/example/child/image.png'
       }
     }
   }
