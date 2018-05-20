@@ -1,5 +1,5 @@
 var test = require('tape')
-var Page = require('./lib')
+var Page = require('./')
 
 var page = new Page(createState())
 

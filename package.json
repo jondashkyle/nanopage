@@ -2,7 +2,7 @@
   "name": "nanopage",
   "version": "0.2.0",
   "description": "handy utility methods for traversing content state",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "standard --fix && node test.js"
   },
