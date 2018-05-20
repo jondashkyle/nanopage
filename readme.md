@@ -1,6 +1,6 @@
 <h1 align="center">nanopage</h1>
 
-`nanopage` is a super easy way of traversing flat content state.
+A super easy way of traversing flat content state. Pairs nicely with [`nanocontent`](https://github.com/jondashkyle/nanocontent).
 
 ```
 npm i nanopage --save
@@ -57,7 +57,7 @@ var lastTitle = page(last).value().title // or like this
 - End a query and return it’s value by calling `.value()` or `.v()`
 - Values can be reused in new queries by doing `page(oldQuery)`
 
-Want to transform a directory of files and folders into flat content state? Try [hypha](https://github.com/jondashkyle/hypha)! Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo). If using Choo, you might [not even need it](#extra).
+Want to transform a directory of files and folders into flat content state? Try [Nanocontent](https://github.com/jondashkyle/nanocontent)! Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo). If using Choo, you might [not even need it](#extra).
 
 ## Philosophy
 
@@ -154,6 +154,10 @@ Sub-pages of the current page.
 #### `.parent()`
 
 The parent of the current page.
+
+#### `.shuffle()`
+
+Shuffle values of an array.
 
 #### `.sort()`
 

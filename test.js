@@ -16,7 +16,7 @@ test('value', function (t) {
 })
 
 test('arrays', function (t) {
-  var state = { one: '1', two: '2'}
+  var state = { one: '1', two: '2' }
   t.ok(Array.isArray(page(state).toArray()), 'to array')
   t.ok(Array.isArray(page(state).values()), 'values')
   t.ok(Array.isArray(page(state).keys()), 'keys')
@@ -45,9 +45,21 @@ test('sort', function (t) {
   t.end()
 })
 
+test('passsing urls', function (t) {
+  t.ok(page('/').value('title') === 'Index', 'able to locate index')
+  t.ok(page('/about').value('title') === 'About', 'able to locate sub-page')
+  t.ok(page('/about/').value('title') === 'About', 'remove trailing slash')
+  t.end()
+})
+
 test('find', function (t) {
   t.ok(page().find('/about').value('title') === 'About', 'absolute')
   t.ok(page('/example').find('child').value('title') === 'Child', 'relative')
+  t.end()
+})
+
+test('parent', function (t) {
+  t.ok(page('/about').parent().value('title') === 'Index', 'parent')
   t.end()
 })
 
