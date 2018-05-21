@@ -8,6 +8,8 @@ npm i nanopage --save
 
 ## Example
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jondashkyle/nanopage.svg)](https://greenkeeper.io/)
+
 ```js
 var Page = require('nanopage')
 
