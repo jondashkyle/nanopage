@@ -70,6 +70,7 @@ test('file', function (t) {
   t.ok(file('/image.jpg').value('url') === '/content/image.jpg', 'url exists')
   t.ok(typeof file('/example/child/image.png').value() === 'object', 'deep value is type object')
   t.ok(typeof page('/example/child').file('image.png').value() === 'object', 'page file value is type object')
+  t.ok(file('/image.jpg').size('500').v() === 'content/image-s500.jpg', 'file size')
   t.end()
 })
 
@@ -100,7 +101,11 @@ function createState () {
         filename: 'image.jpg',
         extension: '.jpg',
         type: 'image',
-        url: '/content/image.jpg'
+        url: '/content/image.jpg',
+        sizes: {
+          '100': 'content/image-s100.jpg',
+          '500': 'content/image-s500.jpg'
+        }
       },
       '/example/child': {
         title: 'Child',
