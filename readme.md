@@ -154,7 +154,7 @@ The parent of the current page.
 
 #### `.toArray()`
 
-Converts the values of an object to an array.
+Converts the values of an object to an array. Not chainable.
 
 #### `.v()`
 
@@ -174,13 +174,13 @@ Returns if the current value key `visible` is not `false`.
 
 Alias for `.pages()`.
 
-#### `.file(filename)`
+#### `.file(url)`
 
 Locate a child file of the current page based on the `url`.
 
 #### `.files()`
 
-Child files of the current `page`.
+Child files of the current page.
 
 #### `.find(url)`
 
