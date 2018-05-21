@@ -4,7 +4,7 @@
   "description": "handy utility methods for traversing content state",
   "main": "index.js",
   "scripts": {
-    "test": "standard --fix && node test.js"
+    "test": "standard; node test.js"
   },
   "repository": {
     "type": "git",
