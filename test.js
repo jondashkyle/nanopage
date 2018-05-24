@@ -11,8 +11,12 @@ test('output', function (t) {
 })
 
 test('page', function (t) {
+  var parentPage = new Page(createState())
+  parentPage.href = '/example'
+
   t.ok(page('/example').value('title') === 'Example', 'select page by id')
   t.ok(page('/example/*').keys()[0] === '/example/child', 'select page(s) by glob')
+  t.ok(page('../').value('title') === 'Index', 'select page by relative path')
   t.end()
 })
 

@@ -102,10 +102,12 @@ var example = file('/example.jpg').value()
 
 ## Globs
 
-Both the `page()` and `file()` methods accept a [glob](https://github.com/isaacs/minimatch) instead of a path.
+Both the `page()` and `file()` methods also accept [globs](https://github.com/isaacs/minimatch) and relative urls to easily traverse directories and files.
 
 ```js
-var images = page('../*.jpg').toArray()
+var imagesParent = page('../*.jpg').toArray()
+var imagesAll = page('*.jpg').toArray()
+var parentTitle = page('../').value('title')
 ```
 
 
