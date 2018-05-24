@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/jondashkyle/nanopage#readme",
   "dependencies": {
+    "glob-to-regexp": "^0.4.0",
+    "is-glob": "^4.0.0",
+    "minimatch": "^3.0.4",
     "object-keys": "^1.0.11",
     "object-values": "^2.0.0",
     "parse-filepath": "^1.0.2",

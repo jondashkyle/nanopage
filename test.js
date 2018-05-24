@@ -10,6 +10,12 @@ test('output', function (t) {
   t.end()
 })
 
+test('page', function (t) {
+  t.ok(page('/example').value('title') === 'Example', 'select page by id')
+  t.ok(page('/example/*').keys()[0] === '/example/child', 'select page(s) by glob')
+  t.end()
+})
+
 test('value', function (t) {
   t.ok(typeof page().value() === 'object', 'value is a type object')
   t.ok(typeof page().v() === 'object', 'v alias for value')
