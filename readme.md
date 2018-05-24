@@ -100,6 +100,15 @@ var file = new File(state)
 var example = file('/example.jpg').value()
 ```
 
+## Globs
+
+Both the `page()` and `file()` methods accept a [glob](https://github.com/isaacs/minimatch) instead of a path.
+
+```js
+var images = page('../*.jpg').toArray()
+```
+
+
 ## Choo
 
 Using Choo? Try the plugin!
