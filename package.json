@@ -1,10 +1,10 @@
 {
   "name": "nanopage",
-  "version": "0.2.0",
+  "version": "0.2.0-next2",
   "description": "handy utility methods for traversing content state",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "standard --fix && node test.js"
+    "test": "standard; node test.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/jondashkyle/nanopage#readme",
   "dependencies": {
+    "is-glob": "^4.0.0",
+    "join-path": "^1.1.1",
+    "minimatch": "^3.0.4",
     "object-keys": "^1.0.11",
     "object-values": "^2.0.0",
+    "parse-filepath": "^1.0.2",
     "resolve-path": "^1.4.0",
     "xtend": "^4.0.1"
   },

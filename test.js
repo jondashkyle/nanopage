@@ -1,10 +1,22 @@
 var test = require('tape')
-var Page = require('./lib')
+var Page = require('./lib/page')
+var File = require('./lib/file')
 
 var page = new Page(createState())
+var file = new File(createState())
 
 test('output', function (t) {
   t.ok(typeof page === 'function', 'outputs function')
+  t.end()
+})
+
+test('page', function (t) {
+  var parentPage = new Page(createState())
+  parentPage.href = '/example'
+
+  t.ok(page('/example').value('title') === 'Example', 'select page by id')
+  t.ok(page('/example/*').keys()[0] === '/example/child', 'select page(s) by glob')
+  t.ok(page('../').value('title') === 'Index', 'select page by relative path')
   t.end()
 })
 
@@ -63,6 +75,15 @@ test('parent', function (t) {
   t.end()
 })
 
+test('file', function (t) {
+  t.ok(typeof file('/image.jpg').value() === 'object', 'value is type object')
+  t.ok(file('/image.jpg').value('url') === '/content/image.jpg', 'url exists')
+  t.ok(typeof file('/example/child/image.png').value() === 'object', 'deep value is type object')
+  t.ok(typeof page('/example/child').file('image.png').value() === 'object', 'page file value is type object')
+  t.ok(file('/image.jpg').size('500').v() === 'content/image-s500.jpg', 'file size')
+  t.end()
+})
+
 function createState () {
   return {
     href: '/',
@@ -86,11 +107,27 @@ function createState () {
         text: 'This is a test',
         url: '/example'
       },
+      '/image.jpg': {
+        filename: 'image.jpg',
+        extension: '.jpg',
+        type: 'image',
+        url: '/content/image.jpg',
+        sizes: {
+          '100': 'content/image-s100.jpg',
+          '500': 'content/image-s500.jpg'
+        }
+      },
       '/example/child': {
         title: 'Child',
         date: '2018-04-01',
         text: 'Look ma I’m nested',
         url: '/example/child'
+      },
+      '/example/child/image.png': {
+        filename: 'image.png',
+        extension: '.png',
+        type: 'image',
+        url: '/content/example/child/image.png'
       }
     }
   }

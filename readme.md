@@ -19,14 +19,18 @@ var state = {
       title: 'Just a site',
       text: 'With some text',
       tags: ['and', 'some', 'tags']
+      url: '/'
     },
     '/example': {
       title: 'Example',
       text: 'Scope it out',
-      great: {
-        demo: 'Am I right?',
-        nah: 'Ok nbd.'
-      }
+      url: '/example'
+    },
+    '/image.jpg': {
+      filename: 'image.jpg',
+      extension: 'jpg',
+      type: 'image',
+      url: '/content/image.jpg'
     }
   }
 }
@@ -57,7 +61,7 @@ var lastTitle = page(last).value().title // or like this
 - End a query and return it’s value by calling `.value()` or `.v()`
 - Values can be reused in new queries by doing `page(oldQuery)`
 
-Want to transform a directory of files and folders into flat content state? Try [Nanocontent](https://github.com/jondashkyle/nanocontent)! Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo). If using Choo, you might [not even need it](#extra).
+Want to transform a directory of files and folders into flat content state? Try [Nanocontent](https://github.com/jondashkyle/nanocontent)! Super handy to use with [Enoki](https://github.com/enokidotsite/enoki) and [Choo](https://github.com/choojs/choo) and the provided [plugin](#choo).
 
 ## Philosophy
 
@@ -65,15 +69,51 @@ State is really handy. Especially global state. We ended up with state when weba
 
 After a while, we started using state for sites too. That is, sites that look more like sites and less like apps. Mostly because state is super handy. However, state can get really messy as sites get larger. Where do you store data? How do you reference it? If you have ten nested pages, do you have ten nested objects?
 
-Instead of all of this complexity, lets reintroduce the URL. Each page url of your site is a key in a flat object. We can simply use the `window.location` to grab the data/content for the current page. Or, we can use any arbitrary url, like `/members/nelson`.
+Instead of all of this complexity, lets reintroduce the URL. Each page url of your site is a key in a flat object. We can simply use the `window.location` to grab the data/content for the current page. Or, we can use any arbitrary url, like `/foo/bar`.
 
 This way of organizing state for sites as a flat object of page urls makes it super trivial to access content in your views and pass it down into components, or whatever. Ok cool!
 
-## Extra
+## Files
 
-Using Choo? Try the plugin! Don’t need all the bells and whistles? Try creating your own basic Choo plugin from scratch.
+Nanopage provides utilities for files via `file()` addition to `page()`.
 
-<details><summary><b>Use the Choo plugin</b></summary>
+```js
+var File = require('nanopage/file')
+
+var state = {
+  '/': {
+    title: 'Index',
+    url: '/'
+  },
+  '/example.jpg': {
+    title: 'Example',
+    filename: 'example.jpg',
+    extension: 'jpg',
+    url: '/content/example.jpg'
+  }
+}
+
+// instantiate the file
+var file = new File(state)
+
+// grab some metadata
+var example = file('/example.jpg').value()
+```
+
+## Globs
+
+Both the `page()` and `file()` methods also accept [globs](https://github.com/isaacs/minimatch) and relative urls to easily traverse directories and files.
+
+```js
+var imagesParent = page('../*.jpg').toArray()
+var imagesAll = page('*.jpg').toArray()
+var parentTitle = page('../').value('title')
+```
+
+
+## Choo
+
+Using Choo? Try the plugin!
 
 ```js
 var html = require('choo/html')
@@ -84,92 +124,48 @@ app.use(require('nanopage/choo'))
 
 app.route('*', function (state, emit) {
   return html`
-    <body>${state.page().value('title')}</body>
+    <body>
+      <h1>${state.page().value('title')}</h1>
+      <img src="${state.file('/about/example.jpg').url()}">
+    </body>
   `
 })
 
 if (module.parent) module.exports = app
 else app.mount('body')
 ```
-</details>
 
-<details><summary><b>Basic vanilla Choo plugin</b></summary>
+## Global utilities
 
-```js
-app.use(function (state, emitter) {
-  state.page = function (key) {
-    key = key || (state.href || '/')
-    return state.content[key]
-  }
-})
-```
-</details>
-
-## Methods
-
-#### `.children()`
-
-Alias for `.pages()`.
-
-#### `.file(filename)`
-
-Grab an individual file. For example, `.file('example.jpg')`.
-
-#### `.files()`
-
-Files of the current `page`.
-
-#### `.find(href)`
-
-Locate a `sub-page` of the `current page` based on the `href`.
+These utilities work for both `page()` and `file()`
 
 #### `.first()`
 
 Returns the first `page` or `file`.
 
-#### `.hasView()`
-
-Does the current page have a custom view?
-
-#### `.images()`
-
-Images of the current page.
-
 #### `.isActive()`
 
-Is the current page active? Returns boolean.
+Is the current value active? Returns boolean.
+
+#### `.isFile()`
+
+Is the current value a file? Returns boolean.
+
+#### `.isPage()`
+
+Is the current value a page? Returns boolean.
 
 #### `.last()`
 
 Returns the last `page` or `file`.
 
-#### `.page()`
-
-The current page.
-
-#### `.pages()`
-
-Sub-pages of the current page.
-
 #### `.parent()`
 
 The parent of the current page.
 
-#### `.shuffle()`
-
-Shuffle values of an array.
-
-#### `.sort()`
-
-Sorts the current value’s `.pages` by `.order`. Formatting of `.order` follows the arguments of `.sortBy` separated by a space. For example, `date asc`.
-
-#### `.sortBy(key, order)`
-
-Sort the `files` or `pages` based by a certain key. Order can be either `asc` or `desc`. For example, `.sortBy('name', 'desc')` or  `.sortBy('date', 'asc')`.
-
 #### `.toArray()`
 
-Converts the values of an object to an array.
+Converts the values of an object to an array. Not chainable.
 
 #### `.v()`
 
@@ -182,4 +178,43 @@ Return the current value. Not chainable.
 #### `.visible()`
 
 Returns if the current value key `visible` is not `false`.
-</details>
+
+## Page utilities
+
+#### `.children()`
+
+Alias for `.pages()`.
+
+#### `.file(url)`
+
+Locate a child file of the current page based on the `url`.
+
+#### `.files()`
+
+Child files of the current page.
+
+#### `.find(url)`
+
+Locate a child page of the current page based on the `url`.
+
+#### `.hasView()`
+
+Does the current page have a custom view?
+
+#### `.images()`
+
+Child images of the current page.
+
+#### `.pages()`
+
+Child pages of the current page.
+
+#### `.shuffle()`
+
+Shuffle values of an array.
+
+#### `.sortBy(key, order)`
+
+Sort the `files` or `pages` based by a certain key. Order can be either `asc` or `desc`. For example, `.sortBy('name', 'desc')` or  `.sortBy('date', 'asc')`.
+
+## File utilities
